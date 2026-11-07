@@ -1,0 +1,878 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>AmiTrust</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap">
+<style>
+/* Site de produto de uma só página: hero com demonstração, secções na ordem do relatório, modo apresentação opcional. */
+:root{
+  --ink:#173235; --ink-2:#2C4A4D; --muted:#4E6669;
+  --rasp:#B82E49; --rasp-2:#D4405D; --rose:#F2A0B0; --blush:#F1D5DB; --blush-2:#FBE6EA;
+  --cream:#FDF9F6; --cream-2:#F8EEEB; --white:#FFFFFF; --line:#E8D6D9;
+  --display:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Source Sans 3',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --logo:url(data:image/png;base64,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);
+  --shadow:0 18px 40px -18px rgba(23,50,53,.35),0 2px 6px rgba(23,50,53,.08);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--white)}
+body.presenting{padding-bottom:76px}
+button,input,summary{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--rasp-2);outline-offset:2px}
+img{max-width:100%}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-family:var(--display);color:var(--ink)}
+.gut{padding-left:max(clamp(16px,4vw,48px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,4vw,48px),env(safe-area-inset-right,0px))}
+.container{max-width:1200px;margin:0 auto;width:100%}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;border:0;border-radius:999px;padding:.8em 1.4em;font:600 .95rem/1 var(--display);text-decoration:none;background:var(--rasp);color:#fff;transition:background .2s,transform .2s}
+.btn:hover{background:var(--rasp-2);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.ghost:hover{background:var(--blush-2)}
+.btn.sm{padding:.6em 1.05em;font-size:.82rem}
+.btn.dark{background:var(--ink)}
+.btn.dark:hover{background:var(--ink-2)}
+
+/* navegação */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.nav .container{display:flex;align-items:center;gap:20px;min-height:64px}
+.logo{display:block;width:118px;aspect-ratio:5/1;background:var(--logo) center/contain no-repeat;flex:none}
+.menu{display:flex;gap:2px;margin-left:auto;align-items:center}
+.menu a{padding:.55em .85em;border-radius:999px;font:500 .92rem var(--display);color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.menu a:hover{background:var(--blush-2)}
+.menu a[aria-current="true"]{background:var(--ink);color:var(--cream)}
+.navtools{display:flex;gap:8px;align-items:center}
+.burger{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;width:42px;height:42px;margin-left:auto;place-items:center}
+.burger svg{width:20px;height:20px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.5em .9em;font:500 .8rem/1 var(--body);white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+/* secções */
+.sec{padding-block:clamp(56px,9vw,112px);scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+.sec.alt{background:var(--cream-2)}
+.sec.dark{background:var(--ink);color:var(--cream)}
+.sec.dark h2,.sec.dark h3{color:var(--cream)}
+.eyebrow{display:inline-flex;gap:.6em;align-items:center;font:600 .78rem/1 var(--display);letter-spacing:.09em;text-transform:uppercase;color:var(--rasp)}
+.eyebrow em{font-style:normal;color:var(--muted);letter-spacing:.04em;text-transform:none;font-weight:500}
+.dark .eyebrow{color:var(--rose)}.dark .eyebrow em{color:#BFD0D1}
+.sec-h{display:grid;gap:.8rem;margin-bottom:2.2rem;max-width:46rem}
+h2{font-size:clamp(1.7rem,3.4vw,2.7rem);line-height:1.15;font-weight:700;text-wrap:balance}
+.lead{font-size:1.15rem;color:var(--ink-2)}
+.dark .lead{color:#D7E3E3}
+h3{font-size:1.1rem;font-weight:600;line-height:1.3}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.3rem 1.4rem}
+.grid{display:grid;gap:1.1rem}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:clamp(40px,7vw,88px)}
+.hero .wm{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wmt{font:500 13px var(--mono);fill:var(--ink);opacity:.06}
+.hero .container{position:relative;display:grid;grid-template-columns:1.02fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
+.pillrow{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.1rem}
+.pill{border-radius:999px;padding:.4em .9em;background:var(--blush-2);color:var(--rasp);font:600 .78rem/1 var(--display)}
+h1{font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.04;font-weight:700;letter-spacing:-.01em}
+h1 .r{color:var(--rasp-2)}
+.hero .lead{margin-top:1.1rem;max-width:34rem}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
+.byline{margin-top:1.6rem;font-size:.92rem;color:var(--muted)}
+.byline b{color:var(--ink);font-weight:600}
+.trust{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:center;padding-block:1.2rem;border-block:1px solid var(--line);background:#fff;font-size:.9rem;color:var(--muted)}
+.trust b{font:600 .72rem var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+
+/* janela de demonstração */
+.win{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.win-bar{display:flex;align-items:center;gap:.5rem;background:var(--ink);color:var(--cream);padding:.6rem .9rem;font:500 .74rem var(--mono)}
+.win-bar i{width:9px;height:9px;border-radius:50%;background:var(--rose);display:inline-block}
+.win-bar i+i{background:#E9B94F}.win-bar i+i+i{background:#7FC4A8}
+.win-bar span{margin-left:.6rem}
+.paper{position:relative;padding:1.1rem 1.3rem;min-height:11rem;overflow:hidden;background:#fff}
+.paper h4{font-size:1.05rem;margin-bottom:.5rem}
+.paper ol{margin:0;padding-left:1.3rem;display:grid;gap:.2rem;font-size:.95rem}
+.wmlayer{position:absolute;inset:-35%;transform:rotate(-22deg);display:flex;flex-wrap:wrap;align-content:flex-start;gap:14px 26px;font:500 11px/1 var(--mono);color:var(--rasp);opacity:.2;pointer-events:none;user-select:none}
+.black{position:absolute;inset:0;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font:600 1rem var(--display);text-align:center;padding:1rem}
+.black[hidden]{display:none}
+.paper.printed{background:#fffdf4;outline:2px dashed var(--rasp-2);outline-offset:-6px}
+.paper.printed .wmlayer{opacity:.38}
+.win-ctl{display:flex;flex-wrap:wrap;gap:.6rem;align-items:end;padding:.8rem 1rem;border-top:1px solid var(--line);background:var(--cream)}
+.win-ctl label{display:grid;gap:.2rem;font-size:.75rem;color:var(--muted);flex:2 1 12rem}
+.win-ctl label:nth-of-type(2){flex:1 1 7rem}
+.win-ctl input{border:1px solid var(--line);border-radius:8px;padding:.5rem .65rem;font:400 .9rem var(--mono);width:100%;background:#fff}
+.win-msg{padding:.7rem 1rem;font-size:.88rem;color:var(--ink-2);border-top:1px solid var(--line);min-height:3.4rem}
+
+/* sobre */
+.facts{display:grid;gap:.8rem;margin-top:1.3rem}
+.facts div{padding-left:1rem;border-left:3px solid var(--blush)}
+.facts b{font-weight:600}
+.flow{display:grid;grid-template-columns:1fr auto 1.1fr auto 1fr;gap:.5rem;align-items:center}
+.node{border-radius:14px;padding:.9rem 1rem;background:#fff;border:1px solid var(--line);display:grid;gap:.2rem;align-content:center;min-height:5.4rem}
+.node b{font:600 1rem var(--display)}
+.node span{font-size:.82rem;color:var(--muted);line-height:1.3}
+.node.core{background:var(--rasp-2);border-color:var(--rasp-2);color:#fff}
+.node.core b,.node.core span{color:#fff}
+.arrow{font:600 1.3rem var(--display);color:var(--rasp-2)}
+.groups{display:grid;gap:.8rem;margin:1.3rem 0 0}
+.groups dt{font:600 .72rem/1 var(--display);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.groups dd{margin:0}
+.callout{background:var(--ink);color:var(--cream);border-radius:16px;padding:1.2rem 1.5rem;font:500 1.05rem/1.45 var(--display);margin-top:2rem}
+
+/* problema */
+.pdfdemo{display:grid;gap:.8rem;margin-top:1rem}
+.pdf-main{display:flex;gap:.8rem;align-items:center}
+.pdf-ico{font:700 .75rem var(--display);background:var(--rasp);color:#fff;border-radius:8px;padding:.9rem .6rem}
+.pdf-main small{display:block;color:var(--muted)}
+.copies{display:flex;flex-wrap:wrap;gap:4px;min-height:34px}
+.copies span{font:700 .55rem/1 var(--display);background:var(--blush);color:var(--rasp);border-radius:4px;padding:.7em .5em}
+.counts{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-size:.92rem}
+.tag{display:inline-block;font:600 .72rem/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--rasp);background:var(--blush-2);border-radius:6px;padding:.5em .75em}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff;margin-top:2rem}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.95rem}
+th,td{text-align:left;padding:.9rem 1.1rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+thead th{font:600 .8rem var(--display);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--cream)}
+thead th.us,td.us{background:var(--blush-2)}
+thead th.us{color:var(--rasp)}
+td:first-child{font-weight:600;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.2rem}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.1rem;display:flex;flex-direction:column;gap:.4rem}
+.stat .n{font:700 2.1rem/1 var(--display);color:var(--rasp);font-variant-numeric:tabular-nums}
+.stat p{font-size:.92rem;line-height:1.35}
+.stat small{font-size:.76rem;color:var(--muted);line-height:1.35;margin-top:auto}
+.test{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:center;margin-top:1.4rem}
+.when{font:700 1.6rem/1.1 var(--display);padding-right:1.4rem;border-right:3px solid var(--rasp-2)}
+.when small{display:block;font:500 .82rem var(--body);color:var(--muted);margin-top:.4rem}
+.gap{border:2px dashed var(--rasp-2);border-radius:16px;padding:1rem 1.3rem;background:var(--blush-2);margin-top:1.1rem}
+.gap b{color:var(--rasp)}
+.hmw-band{margin-top:3rem;padding:clamp(28px,5vw,56px);border-radius:24px;background:var(--ink);color:var(--cream)}
+.hmw-band .lab{font:600 .78rem var(--display);letter-spacing:.09em;text-transform:uppercase;color:var(--rose);margin-bottom:.9rem}
+.hmw-band h3{font:600 clamp(1.3rem,2.6vw,2rem)/1.3 var(--display);color:var(--cream);max-width:40rem;text-wrap:balance}
+.support{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:.8rem}
+.support li{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;border-top:1px solid rgba(253,249,246,.22);padding-top:.8rem}
+.ans{font:600 .78rem/1.2 var(--display);color:var(--ink);background:var(--rose);border-radius:999px;padding:.55em .95em;text-align:center}
+
+/* solução */
+.tabs{display:inline-flex;flex-wrap:wrap;gap:.4rem;padding:.3rem;background:var(--cream-2);border:1px solid var(--line);border-radius:999px}
+.alt .tabs{background:#fff}
+.tab{border:0;background:transparent;border-radius:999px;padding:.6em 1.1em;font:600 .88rem var(--display)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--cream)}
+.panelx{margin-top:1.4rem}
+.panelx[hidden]{display:none}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.4rem}
+.fi{width:2.6rem;height:2.6rem;border-radius:12px;background:var(--blush-2);display:grid;place-items:center;margin-bottom:.9rem}
+.fi svg{width:1.4rem;height:1.4rem}
+.feat .card p{font-size:.95rem;margin-top:.4rem;color:var(--ink-2)}
+.list{margin:0;padding:0;list-style:none;display:grid;gap:.8rem}
+.list li{padding-left:1rem;border-left:3px solid var(--blush)}
+.list li b{font-weight:600}
+details.d{border:1px solid var(--line);border-radius:16px;background:#fff;margin-top:1.1rem}
+details.d summary{cursor:pointer;padding:1rem 1.3rem;font:600 1rem var(--display);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+details.d summary::-webkit-details-marker{display:none}
+details.d summary::after{content:"+";font:500 1.5rem/1 var(--display);color:var(--rasp)}
+details.d[open] summary::after{content:"−"}
+details.d .in{padding:0 1.3rem 1.3rem}
+.vpc{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.vpc .h{font:700 .8rem var(--display);letter-spacing:.06em;text-transform:uppercase;padding:.7rem 1rem;color:#fff}
+.vpc .h.v{background:var(--ink)}.vpc .h.c{background:var(--rasp)}
+.vpc .cell{padding:.85rem 1rem;font-size:.92rem;line-height:1.4;border-top:1px solid var(--line)}
+.vpc .cell b{display:block;font:600 .92rem var(--display);margin-bottom:.2rem}
+.vpc .cell.c{border-left:1px solid var(--line);background:var(--blush-2)}
+
+/* planos e modelo */
+.price-toggle{display:inline-flex;gap:.3rem;padding:.3rem;border:1px solid var(--line);border-radius:999px;background:#fff}
+.price-toggle button{border:0;background:transparent;border-radius:999px;padding:.5em 1em;font:600 .85rem var(--display)}
+.price-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.6rem}
+.plan{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.6rem;display:grid;gap:.9rem;align-content:start}
+.plan.feat-plan{border:2px solid var(--rasp-2);box-shadow:var(--shadow)}
+.plan .pn{font:600 .8rem var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--rasp)}
+.plan .pp{font:700 2.2rem/1 var(--display)}
+.plan .pp small{font:500 .95rem var(--body);color:var(--muted)}
+.plan ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem;font-size:.95rem}
+.plan li{padding-left:1.5rem;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:.45em;width:.9rem;height:.9rem;border-radius:50%;background:var(--blush) }
+.plan li::after{content:"";position:absolute;left:.3rem;top:.62em;width:.28rem;height:.5rem;border:solid var(--rasp);border-width:0 2px 2px 0;transform:rotate(40deg) scale(.85);transform-origin:center}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.3rem;display:grid;gap:.8rem;align-content:start}
+.slider{display:grid;grid-template-columns:7.5rem 1fr 5rem;gap:.7rem;align-items:center;font-size:.92rem}
+.slider output{font:600 .95rem var(--mono);text-align:right}
+input[type=range]{accent-color:var(--rasp);width:100%}
+.bar{display:grid;grid-template-columns:9.5rem 1fr auto;gap:.6rem;align-items:center;font-size:.9rem}
+.track{height:1.2rem;background:var(--blush-2);border-radius:6px;overflow:hidden}
+.fill{display:block;height:100%;border-radius:6px;transition:width .25s}
+.f-a{background:var(--rasp-2)}.f-r{background:var(--ink-2)}
+.val{font:500 .9rem var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.verdict{font:600 .95rem var(--display);padding:.7rem .9rem;border-radius:10px;background:var(--blush-2)}
+.verdict.ok{background:var(--ink);color:var(--cream)}
+.inv{display:flex;height:2.2rem;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.inv span{display:flex;align-items:center;justify-content:center;font:600 .72rem var(--display);color:#fff;min-width:0;overflow:hidden;white-space:nowrap}
+.invleg{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.82rem;color:var(--muted)}
+.invleg i{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;margin-right:.35rem;vertical-align:-1px}
+.bmc{display:grid;grid-template-columns:repeat(10,1fr);gap:.6rem}
+.bc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:.85rem .9rem;font-size:.86rem;line-height:1.4}
+.bc h4{font:700 .9rem var(--display);margin-bottom:.35rem}
+.bc.em{background:var(--blush-2);border-color:var(--rose);border-top:3px solid var(--rasp-2)}
+.c-parc{grid-column:1/3;grid-row:1/3}.c-ativ{grid-column:3/5;grid-row:1}.c-rec{grid-column:3/5;grid-row:2}
+.c-prop{grid-column:5/7;grid-row:1/3}.c-rel{grid-column:7/9;grid-row:1}.c-can{grid-column:7/9;grid-row:2}
+.c-seg{grid-column:9/11;grid-row:1/3}.c-cus{grid-column:1/6;grid-row:3}.c-fon{grid-column:6/11;grid-row:3}
+
+/* reflexão */
+.pairs{display:grid;gap:0}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:.4rem 1.6rem;border-top:1px solid var(--line);padding:.8rem 0;font-size:.95rem}
+.pair b{color:var(--rasp);font-weight:600}
+.quote{font:600 clamp(1.2rem,2.2vw,1.6rem)/1.35 var(--display);max-width:34rem;margin-top:1.6rem}
+.quote span{color:var(--rasp)}
+
+/* como funciona */
+.stepgroup{margin-top:2.4rem}
+.stepgroup>h3{font:600 .8rem var(--display);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.step{display:grid;grid-template-columns:2.6rem 1fr;gap:1rem;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.2rem}
+.step .no{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--rasp-2);color:#fff;display:grid;place-items:center;font:700 1rem var(--display)}
+.step h4{font:600 1rem var(--display);margin-bottom:.25rem}
+.step p{font-size:.93rem;color:var(--ink-2)}
+.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.4rem}
+.quad .card p{font-size:.95rem;color:var(--ink-2)}
+
+/* faq */
+.faq{max-width:50rem}
+.faq details{border-bottom:1px solid var(--line);padding:.2rem 0}
+.faq summary{cursor:pointer;list-style:none;padding:1.1rem 0;font:600 1.05rem var(--display);display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 1.5rem/1 var(--display);color:var(--rasp)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 1.2rem;color:var(--ink-2)}
+
+/* rodapé */
+.foot{background:var(--ink);color:#D7E3E3;padding-block:3rem 2.4rem}
+.foot .container{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+.foot .logo{background-color:var(--cream);border-radius:10px;padding:.3rem;width:150px;background-origin:content-box;background-clip:padding-box}
+.foot h4{font:600 .78rem var(--display);letter-spacing:.09em;text-transform:uppercase;color:var(--rose);margin-bottom:.8rem}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;font-size:.95rem}
+.foot a{text-decoration:none}.foot a:hover{text-decoration:underline}
+.foot .legal{grid-column:1/-1;border-top:1px solid rgba(253,249,246,.2);padding-top:1.2rem;font-size:.85rem;color:#A9BEBF}
+
+/* modo apresentação */
+.pbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;align-items:center;gap:10px;min-height:56px;padding-top:6px;padding-bottom:calc(6px + env(safe-area-inset-bottom,0px));background:var(--cream);border-top:1px solid var(--line)}
+body.presenting .pbar{display:flex}
+.pnav{width:36px;height:36px;border-radius:50%;border:1px solid var(--ink);background:transparent;display:grid;place-items:center;flex:none}
+.pnav:hover{background:var(--blush-2)}.pnav:disabled{opacity:.3;cursor:default}
+.pnav svg{width:16px;height:16px}
+.thread{position:relative;flex:1;height:36px;margin-inline:12px}
+.thread .line{position:absolute;left:0;right:0;top:50%;border-top:2px dashed var(--rose)}
+.thread .done{position:absolute;left:0;top:50%;height:3px;margin-top:-1.5px;background:var(--rasp-2);border-radius:2px;width:0;transition:width .5s}
+.dot{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--rasp-2);background:var(--cream);padding:0}
+.dot.seen{background:var(--rasp-2)}
+.ball{position:absolute;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;transition:left .5s;pointer-events:none;filter:drop-shadow(0 1px 1px rgba(23,50,53,.25))}
+#count{font:500 .8rem var(--mono);color:var(--muted);flex:none;min-width:4ch;text-align:right}
+.ptimer{font:500 .85rem var(--mono);border:1px solid var(--line);background:#fff;border-radius:999px;padding:.5em .9em;flex:none;white-space:nowrap}
+.ptimer.warn{border-color:#C98A12;color:#7A5200}.ptimer.over{border-color:var(--rasp);color:var(--rasp)}
+.notes{position:fixed;left:0;right:0;bottom:calc(56px + env(safe-area-inset-bottom,0px));z-index:54;background:var(--ink);color:var(--cream);padding-block:.9rem;max-height:36vh;overflow:auto;font-size:1rem;line-height:1.5;display:none}
+body.presenting.shownotes .notes{display:block}
+.notes .nh{font:600 .72rem var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--rose);margin-bottom:.4rem}
+
+@media (max-width:980px){
+  .menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:.6rem max(16px,env(safe-area-inset-left,0px))}
+  .menu.open{display:flex}
+  .menu a{padding:.8em 1em}
+  .burger{display:grid}
+  .navtools{display:none}
+  .hero .container,.split,.g2,.g3,.feat,.plans,.quad,.steps,.foot .container,.vpc,.pair,.chain,.kpis,.pair2{grid-template-columns:1fr}.chain li::after{display:none!important}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .bmc{grid-template-columns:1fr}
+  .bmc .bc{grid-column:auto!important;grid-row:auto!important}
+  .flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}
+  .test{grid-template-columns:1fr}.when{border-right:0;border-bottom:3px solid var(--rasp-2);padding:0 0 .7rem}
+  .support li{grid-template-columns:1fr}
+  .vpc .cell.c{border-left:0}
+  .slider{grid-template-columns:6rem 1fr 4.5rem}
+  .bar{grid-template-columns:6.8rem 1fr auto}
+}
+@media (max-width:520px){.stats{grid-template-columns:1fr}.pbar .ptimer{display:none}}
+@media (prefers-reduced-motion:reduce){.btn,.fill,.ball,.thread .done{transition:none}}
+
+/* edições de 5 nov */
+.hero.banner{padding-block:clamp(72px,12vw,150px);text-align:center}
+.hero.banner .container{display:block}
+.logo.big{width:min(320px,72vw);margin:0 auto 1.6rem}
+.hero.banner .lead{margin:1.4rem auto 0;max-width:41rem;font-size:clamp(1.05rem,1.8vw,1.28rem)}
+.subh{font:600 1.25rem/1.3 var(--display);margin:3rem 0 0}
+.subh+.feat{margin-top:1.2rem}
+.hmw-band .who{font:600 1.05rem var(--display);color:var(--cream);margin-top:1.8rem}
+.chain{list-style:none;margin:1.1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(12,1fr);gap:1.1rem;counter-reset:c}
+.chain li{position:relative;border:1px solid rgba(253,249,246,.28);border-radius:14px;padding:1rem 1rem 1rem 3.3rem;background:rgba(253,249,246,.06);counter-increment:c;font-size:.9rem;line-height:1.35;color:#D7E3E3}
+.chain li::before{content:counter(c);position:absolute;left:.9rem;top:1rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--rose);color:var(--ink);font:700 .82rem/1.7rem var(--display);text-align:center}
+.chain li{grid-column:span 3}.chain li:nth-child(n+5){grid-column:span 4}.chain li:not(:nth-child(4)):not(:nth-child(7))::after{content:"\2192";position:absolute;right:-1.02rem;top:50%;transform:translateY(-50%);color:var(--rose);font:700 .95rem var(--display)}
+.chain .tg{display:block;margin-top:.5rem;font:600 .68rem/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--rose)}
+.chain li b{display:block;font:600 1rem var(--display);color:var(--cream);margin-bottom:.15rem}
+.vtab{display:grid;grid-template-columns:8.5rem 1.35fr 1fr;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;margin-top:1.6rem}
+.vtab>div{padding:1rem 1.2rem;border-top:1px solid var(--line)}
+.vtab>.h{border-top:0;font:700 .85rem var(--display);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--ink)}
+.vtab>.h.cb{background:var(--rasp)}
+.vtab>.h.e{background:var(--cream)}
+.vtab>.rl{font:600 .92rem var(--display);background:var(--cream)}
+.vtab>.cb2{background:var(--blush-2)}
+.vtab ul{margin:0;padding:0;list-style:none;display:grid;gap:.6rem;font-size:.93rem;line-height:1.4}
+.vtab li b{font-weight:600}
+.vtab li i{font-style:normal;color:var(--rasp)}
+.stepno{font:600 .75rem var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--rasp)}
+.pair2{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
+.kpi{background:var(--blush-2);border-radius:12px;padding:.8rem 1rem}
+.kpi b{display:block;font:700 1.45rem/1.2 var(--display);color:var(--rasp)}
+.kpi span{font-size:.84rem;color:var(--ink-2);line-height:1.3;display:block}
+.track.two{display:flex}
+.track.two .fill{flex:none}
+.f-s{background:repeating-linear-gradient(45deg,#8AA0A2 0 4px,#B9C7C8 4px 8px)}
+.f-e{background:repeating-linear-gradient(45deg,var(--ink-2) 0 5px,#6F8486 5px 10px)}
+.legend2{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.8rem;color:var(--muted)}
+.legend2 i{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;margin-right:.35rem;vertical-align:-1px}
+.demo-wrap{margin-top:2.4rem;max-width:46rem}
+.demo-wrap>h3{font:600 .8rem var(--display);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.notes ul{margin:.2rem 0 0;padding-left:1.2rem;display:grid;gap:.25rem}
+@media (max-width:1180px){.menu a{padding:.5em .6em;font-size:.86rem}.nav .container{gap:12px}}
+@media (max-width:1100px){
+  .menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:.6rem max(16px,env(safe-area-inset-left,0px))}
+  .menu.open{display:flex}
+  .menu a{padding:.8em 1em;font-size:.92rem}
+  .burger{display:grid}
+  .navtools{display:none}
+}
+@media (max-width:980px){.chain,.kpis,.pair2{grid-template-columns:1fr}.chain li,.chain li:nth-child(n+5){grid-column:auto}.chain li::after{display:none!important}}
+@media (max-width:700px){
+  .vtab{grid-template-columns:1fr 1fr}
+  .vtab>.h.e{display:none}
+  .vtab>.rl{grid-column:1/-1}
+  .vtab>div{padding:.8rem .85rem}
+  .vtab ul{font-size:.86rem}
+}
+@media (max-width:700px){.tabs{display:flex!important;flex-direction:column;align-items:stretch;border-radius:18px;padding:6px;gap:2px;width:100%}.tabs .tab{text-align:left;white-space:normal;border-radius:12px;padding:.7em .9em}}
+.facts.two{grid-template-columns:1fr 1fr;gap:1rem 1.6rem}
+.flowbig .flow{gap:1rem}.flowbig .node{padding:1.6rem 1.3rem;min-height:9rem;text-align:center}.flowbig .node b{font-size:1.35rem}.flowbig .node span{font-size:.95rem}.flowbig .arrow{font-size:2.2rem}
+@media (max-width:980px){.facts.two{grid-template-columns:1fr}}
+</style>
+
+<header class="nav gut" id="top">
+  <div class="container">
+    <a href="#sobre" class="logo" role="img" aria-label="AmiTrust, início"></a>
+    <nav class="menu" id="menu" aria-label="Secções">
+      <a href="#sobre">Sobre</a><a href="#problema">Problema</a><a href="#contexto">Contexto</a><a href="#solucao">Solução</a><a href="#modelo">Planos e modelo</a><a href="#anexos">Como funciona</a><a href="#reflexao">Reflexão</a><a href="#faq">Perguntas</a>
+    </nav>
+    
+    <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+  </div>
+</header>
+
+<main>
+
+<!-- 1 SOBRE / BANNER -->
+<section class="hero banner gut" id="sobre" data-nav="Sobre" data-label="Sobre">
+  <svg class="wm" aria-hidden="true"><defs><pattern id="wmp" width="420" height="130" patternUnits="userSpaceOnUse" patternTransform="rotate(-24)"><text x="0" y="40" class="wmt">comprador@exemplo.pt · NIF 123 456 789</text><text x="210" y="105" class="wmt">comprador@exemplo.pt · NIF 123 456 789</text></pattern></defs><rect width="100%" height="100%" fill="url(#wmp)"/></svg>
+  <div class="container">
+    <div class="logo big" role="img" aria-label="AmiTrust"></div>
+    <h1>Cria. <span class="r">Protege.</span> Monetiza.</h1>
+    <p class="lead">A AmiTrust é um Marketplace que vende receitas de artes manuais como páginas web encriptadas e rastreáveis: sem PDF ou print screen para partilhar, com marca de água para rastreio de impressão e IA anti-plágio.</p>
+  </div>
+  </section>
+
+<!-- 2 PROBLEMA -->
+<section class="sec alt gut" id="problema" data-nav="Problema" data-label="Problema e evidência">
+  <div class="container">
+    <div class="split">
+      <div class="sec-h" style="margin:0">
+        <h2>Um PDF pode ser copiado e partilhado sem que o autor saiba</h2>
+        <p class="lead">Há um problema de confiança nos dois lados do mercado: quem vende não confia que o trabalho esteja protegido nem tem forma de saber quem copiou, e quem compra não tem qualquer garantia de que a receita é autêntica.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Cenário ilustrativo (hipotético)</span>
+        <p style="margin-top:.8rem">Um autor dedica três semanas a criar, testar e documentar o padrão de um amigurumi e vende-o online em PDF, sem proteção, por 5 €. Um comprador partilha o ficheiro num grupo de redes sociais com milhares de membros. O autor não recebe nada pelas cópias e não tem forma de saber quem as fez.</p>
+        <div class="pdfdemo">
+          <div class="pdf-main"><span class="pdf-ico">PDF</span><div><b>Amigurumi_coelho.pdf</b><small>vendido 1 vez · 5,00 €</small></div></div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap"><button class="btn sm" id="btnShare" type="button">Partilhar no grupo</button><button class="btn ghost sm" id="btnReset" type="button">Repor</button></div>
+          <div class="copies" id="copies" aria-live="polite"></div>
+          <p class="counts"><span>Cópias em circulação: <b id="cN">0</b></span><span>Recebido pelo autor: <b>5,00 €</b></span><span>Quem copiou? <b>não sabe</b></span></p>
+        </div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:1.4rem">
+      <div class="card"><h3>Etsy</h3><p class="muted" style="margin-top:.3rem">Tem alcance mundial, mas cobra taxas de cerca de 15% (valor ilustrativo) e entrega o ficheiro em PDF livre, o que facilita a pirataria.</p></div>
+      <div class="card"><h3>Ravelry</h3><p class="muted" style="margin-top:.3rem">Tem a comunidade certa, mas cobra 5% mais PayPal (3,4% + 0,40 €), o que numa compra de 5 € dá cerca de 16% em taxas; tem um site parado no tempo e não tem nenhum sistema anticópia.</p></div>
+    </div>
+    <div style="height:1.6rem"></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th></th><th>Etsy</th><th>Ravelry</th><th class="us">AmiTrust</th></tr></thead>
+        <tbody>
+          <tr><td>Ficheiro da receita</td><td>PDF livre</td><td>Sem sistema anticópia</td><td class="us">Página encriptada, sem PDF para descarregar</td></tr>
+          <tr><td>Quem partilhou?</td><td>Não se sabe</td><td>Não se sabe</td><td class="us">Identificado pela marca de água (email e NIF)</td></tr>
+          <tr><td>Taxas</td><td>~15%</td><td>5% + PayPal 3,4% + 0,40 €</td><td class="us">9% + 0,25 €</td></tr>
+          <tr><td>Impressão em papel</td><td>Livre</td><td>Livre</td><td class="us">Mantida, mas identificada (Print &amp; Track)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted" style="margin-top:.7rem">Taxas: valores aproximados, usados como exemplo. O Etsy tem várias camadas, por isso mostramos ~15% como referência.</p>
+
+    <div class="sec-h" style="margin-top:4rem"><h2>Dados sobre o mercado</h2></div>
+    <div class="card test" style="margin-top:0">
+      <div class="when">2 a 9 out<small>2026 · teste informal</small></div>
+      <p>Publiquei a temática e a proposta, de forma sincronizada, em comunidades ativas de autores e artesãos no Reddit, Instagram, Facebook e Threads. As respostas foram favoráveis, com várias interações a validar que a pirataria de PDFs é uma dor diária e urgente. A isto junta-se a minha experiência como criadora e compradora de receitas.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="n">64%</span><p>usam mercados online para obter padrões</p><small>Craft Industry Alliance, 2024. Inquérito americano a mais de 7.000 consumidores, média de 58 anos e 98% mulheres: indício, não retrato do mercado português.</small></div>
+      <div class="stat"><span class="n">70,4%</span><p>indicam o Ravelry como principal fonte de inspiração</p><small>Craft Industry Alliance, 2024. Mesma amostra.</small></div>
+      <div class="stat"><span class="n">86,5 M</span><p>compradores ativos no Etsy no final de 2025</p><small>Relatório anual do Etsy à SEC.</small></div>
+      <div class="stat"><span class="n">+7,2%</span><p>por ano no mercado de tricô e croché, até 2030</p><small>Technavio. Estimativa de terceiros, não específica do digital.</small></div>
+      <div class="stat"><span class="n">9 M+</span><p>membros no Ravelry</p><small>Ravelry, página institucional.</small></div>
+    </div>
+    <p class="gap"><b>Lacuna de evidência:</b> não encontrei dados fiáveis sobre a dimensão da pirataria de receitas digitais. A proposta é validar isto no MVP, com a medição de cópias detetadas pela IA.</p>
+
+    <div class="hmw-band">
+      <div class="lab">Pergunta central · How might we</div>
+      <h3>Como poderíamos nós permitir que artesãos vendam receitas digitais com segurança, sem perderem o controlo do seu trabalho, e que os compradores as possam consumir, e até imprimir, com confiança?</h3>
+      <p class="who">Resposta: criar uma plataforma, a AmiTrust, que tenha estes sete pontos:</p>
+      <ol class="chain">
+        <li><b>Página encriptada</b>a receita fica numa página web protegida, sem PDF para descarregar<span class="tg">Resolve: cópias sem consentimento</span></li>
+        <li><b>Marca de água</b>com o email e o NIF de quem comprou<span class="tg">Resolve: não saber quem copiou</span></li>
+        <li><b>Impressão direta</b>pelo botão oficial, à escolha do autor, com Anti-Foto (Moiré) e QR Code (Print &amp; Track)<span class="tg">Ganho: imprimir com confiança</span></li>
+        <li><b>Bloqueio de print screen</b>a captura de ecrã sai preta<span class="tg">Resolve: cópias por captura</span></li>
+        <li><b>Taxas competitivas</b>9% + 0,25 €, com parceiros de pagamento de taxas baixas e justas<span class="tg">Resolve: taxas altas</span></li>
+        <li><b>IA de verificação</b>vigia a web, lê o QR Code e notifica o infrator automaticamente<span class="tg">Resolve: cópias fora da plataforma</span></li>
+        <li><b>Mais vendas</b>planos Médio e Premium: destaque, divulgação nas redes e descontos em lojas parceiras<span class="tg">Ganho: mais vendas e visibilidade</span></li>
+      </ol>
+    </div>
+  </div>
+  </section>
+
+<!-- 3 CONTEXTO -->
+<section class="sec gut" id="contexto" data-nav="Contexto" data-label="Contexto">
+  <div class="container">
+    <div class="sec-h">
+      <h2>Uma startup de ideia e MVP, num nicho onde artesãos vendem a artesãos</h2>
+      <p class="lead">A AmiTrust vende receitas e padrões de artes manuais (amigurumi, croché, tricô, costura, bordado e impressão 3D) em páginas web encriptadas e rastreáveis.</p>
+    </div>
+    <div class="facts two">
+          <div><b>Organização:</b> a AmiTrust é uma startup em fase de ideia e de MVP. A fundadora será, no começo, a única pessoa da equipa, e os serviços externos serão em outsourcing (assessoria jurídica e contabilidade).</div>
+          <div><b>Setor de Atuação:</b> economia criativa, comércio eletrónico e proteção da propriedade intelectual.</div>
+          <div><b>Nicho:</b> marketplace C2C (consumidor para consumidor) de infoprodutos de artesanato digital e de artes manuais de autoria original.</div>
+          <div><b>Vendedores (autores e artesãos):</b> criadores de padrões, guias e receitas de autoria original. Procuram uma plataforma protegida contra o plágio e a partilha ilegal para venderem os seus projetos com segurança.</div>
+          <div><b>Compradores (artesãos e entusiastas):</b> adquirem receitas de autoria original e aceitam as marcas de água rastreáveis em troca de receitas autênticas e de qualidade.</div>
+          <div><b>Plataforma AmiTrust:</b> intermedeia as transações, converte e encripta as receitas, gere o sistema anticópia e a impressão rastreável e executa a monitorização anti-plágio.</div>
+          <div><b>Parceiros tecnológicos e financeiros:</b> Stripe (pagamentos), AWS (servidores), WordPress/WooCommerce (No-Code), Llama e visão computacional (IA anti-plágio), Google AdSense e lojas e armarinhos parceiros.</div>
+          <div><b>Serviços externos:</b> Wonder.Legal, assessoria jurídica e contabilidade em outsourcing, e Autoridade Tributária (IVA e NIF).</div>
+          <div><b>Comunidades e concorrência:</b> redes sociais (Reddit, Instagram, Facebook e Threads), onde a plataforma ganha tração, e os concorrentes Etsy e Ravelry.</div>
+    </div>
+    <div class="sec-h" style="margin-top:4rem">
+      <h2>Quem é o vendedor e o comprador que usamos como referência</h2>
+      <p class="lead">Mapa de empatia</p>
+    </div>
+    <div class="tabs" role="tablist" data-tabs="emp2">
+      <button class="tab" role="tab" aria-selected="true" data-tab="v" type="button">Mapa de empatia do vendedor</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="c" type="button">Mapa de empatia do comprador</button>
+    </div>
+    <div data-panels="emp2">
+      <div class="panelx" data-panel="v"><div class="quad">
+          <div class="card"><h3>Pensa e Sente</h3><p style="margin-top:.4rem">Sente orgulho no seu trabalho, mas também medo e frustração ao pensar que o ficheiro pode ser copiado sem o seu consentimento. Tem dúvidas sobre se compensa vender online, preocupa-se com as taxas e deseja reconhecimento, um rendimento justo e uma plataforma em que possa confiar.</p></div>
+          <div class="card"><h3>Vê</h3><p style="margin-top:.4rem">Receitas semelhantes às suas a circular de graça em grupos de redes sociais, outros artesãos a vender no Etsy e no Ravelry e as taxas a serem descontadas em cada venda. Vê plataformas desatualizadas e sem proteção, e vê o artesanato digital, em especial o amigurumi, a crescer nas redes.</p></div>
+          <div class="card"><h3>Ouve</h3><p style="margin-top:.4rem">Ouve outros artesãos queixarem-se de cópias e de partilhas sem autorização. Ouve conselhos como “vende no Etsy, é onde está o público” e comentários como “na internet tudo se partilha”. Ouve falar de plataformas novas, de taxas e de mudanças de regras.</p></div>
+          <div class="card"><h3>Diz e Faz</h3><p style="margin-top:.4rem">Diz que gosta de criar mas que tem medo de perder o controlo do que faz. Publica as receitas em PDF, mostra o progresso das peças nas redes sociais e procura sítios onde vender com menos taxas. Pode reagir à pirataria com cautela, partilhando menos ou deixando de publicar receitas completas.</p></div>
+      </div></div>
+      <div class="panelx" data-panel="c" hidden><div class="quad">
+          <div class="card"><h3>Pensa e Sente</h3><p style="margin-top:.4rem">Quer comprar receitas autênticas e de qualidade, mas desconfia de ficheiros copiados e de vendedores que não conhece. Receia pagar por algo que já circula de graça e preocupa-se com a privacidade ao dar o email e o NIF. Deseja confiança e poder imprimir a receita para trabalhar com ela.</p></div>
+          <div class="card"><h3>Vê</h3><p style="margin-top:.4rem">Receitas iguais a circular de graça em grupos de redes sociais, vendedores em plataformas como o Etsy e o Ravelry e preços e taxas que variam. Vê o artesanato digital, em especial o amigurumi, a crescer nas redes.</p></div>
+          <div class="card"><h3>Ouve</h3><p style="margin-top:.4rem">Ouve outros artesãos dizerem que “na internet tudo se partilha” e que há cópias de má qualidade. Recebe conselhos das comunidades sobre onde encontrar bons padrões e quem os vende.</p></div>
+          <div class="card"><h3>Diz e Faz</h3><p style="margin-top:.4rem">Procura padrões em mercados online e comunidades, compara preços e imprime as receitas para trabalhar com elas. Aceita dar os seus dados em troca de receitas autênticas e de qualidade, sabendo que a impressão é rastreável.</p></div>
+      </div></div>
+    </div>
+    <p class="callout" style="margin-top:3rem">Sem vendedores não há receitas, e sem compradores não há vendas. A estratégia é começar pelos vendedores, com proteção de direitos de autor e taxas justas, para depois atrair os compradores. Em cada venda, a taxa é de 9% + 0,25 €: 1,5% + 0,25 € são da Stripe e 7,5% ficam para a AmiTrust.</p>
+    <div class="flowbig">
+      <h3 class="subh" style="text-align:center;margin:3.4rem 0 1.6rem">Um marketplace de dois lados</h3>
+      <div class="flow">
+        <div class="node"><b>Vendedores</b><span>publicam receitas e pagam a comissão</span></div>
+        <div class="arrow" aria-hidden="true">⇄</div>
+        <div class="node core"><b>AmiTrust</b><span>marketplace de dois lados: protege, intermedeia e monetiza</span></div>
+        <div class="arrow" aria-hidden="true">⇄</div>
+        <div class="node"><b>Compradores</b><span>leem receitas autênticas, de forma rastreável</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 SOLUÇÃO -->
+<section class="sec alt gut" id="solucao" data-nav="Solução" data-label="Proposta de valor">
+  <div class="container">
+    <div class="sec-h">
+      <h2>Proteção para quem cria, confiança para quem compra</h2>
+      <p class="lead">Dois públicos num nicho de artesanato digital. O prioritário são os vendedores, porque sem receitas não há marketplace.</p>
+    </div>
+    <div class="vtab">
+      <div class="h e"></div><div class="h">Vendedor <span style="font-weight:500;letter-spacing:0;text-transform:none">(prioritário)</span></div><div class="h cb">Comprador</div>
+      <div class="rl">Dores que resolvemos</div>
+      <div><ul>
+        <li><b>Cópias e partilhas sem consentimento</b> <i>→ receita encriptada, sem PDF livre</i></li>
+        <li><b>Não saber quem copiou</b> <i>→ marca de água e QR Code com email e NIF</i></li>
+        <li><b>Taxas altas</b> (Etsy ~15%, Ravelry ~16%) <i>→ 9% + 0,25 € e parceiros de pagamento justos</i></li>
+        <li><b>Plataformas desatualizadas, sem proteção</b> <i>→ IA anti-plágio que vigia a internet</i></li>
+      </ul></div>
+      <div class="cb2"><ul>
+        <li><b>Sem garantia de que a receita é autêntica</b> <i>→ receita original do autor, protegida e verificada pela IA</i></li>
+      </ul></div>
+      <div class="rl">Ganhos que criamos</div>
+      <div><ul>
+        <li><b>Vender com a receita protegida</b> e rastreável</li>
+        <li><b>Pagar menos</b> por cada venda</li>
+        <li><b>Mais vendas</b>, com destaque e divulgação através da subscrição (planos Médio e Premium)</li>
+        <li><b>Escolher</b> se autoriza ou bloqueia a impressão em papel</li>
+      </ul></div>
+      <div class="cb2"><ul>
+        <li><b>Receitas autênticas</b></li>
+        <li><b>Imprimir</b> pelo botão oficial, quando o autor o autoriza</li>
+        <li><b>Apoiar diretamente</b> quem as cria</li>
+      </ul></div>
+    </div>
+    <details class="d" style="margin-top:2.4rem">
+      <summary>Value Proposition Canvas completo</summary>
+      <div class="in">
+        <div class="vpc">
+          <div class="h v">Mapa de Valor</div><div class="h c">Perfil do Cliente</div>
+          <div class="cell"><b>Produtos/Serviços</b>Marketplace protegido para receitas digitais de artes manuais; leitor web encriptado; print screen bloqueado; validação fiscal internacional no checkout; tecnologia Anti-Foto (Grade Moiré); QR Code criptográfico dinâmico; planos de subscrição com destaques e rede de parcerias.</div>
+          <div class="cell c"><b>Customer Jobs</b>Criar e documentar padrões manuais originais; publicar e comercializar infoprodutos; ganhar reputação e visibilidade; receber pagamentos de forma segura.</div>
+          <div class="cell"><b>Aliviadores Dores</b>Eliminação do PDF livre descarregável; bloqueio de capturas de ecrã (ecrã preto); identificação direta de infratores via NIF e email; comissão líquida de 7,5% para a AmiTrust; sistema autónomo de notificação extrajudicial em caso de plágio.</div>
+          <div class="cell c"><b>Dores</b>Ver o seu trabalho partilhado gratuitamente em grupos; perder rendimento para a pirataria; taxas altas, sem suporte de proteção contra cópias.</div>
+          <div class="cell"><b>Criadores Ganhos</b>Estrutura clara de taxas (9% + 0,25 € com a Stripe); opção de autorizar a impressão pelo botão oficial (Print &amp; Track); Plano Médio (2,99 €/mês) e Plano Premium (5,99 €/mês, com “Destaque dos Destaques” e descontos em lojas parceiras de material de artesanato).</div>
+          <div class="cell c"><b>Ganhos</b>Sentir que a sua arte está protegida; obter rentabilidade justa por venda; ter acesso a ferramentas de destaque e a descontos em matérias-primas de artesanato.</div>
+        </div>
+      </div>
+    </details>
+  </div>
+  </section>
+
+<!-- 5 MODELO -->
+<section class="sec gut" id="modelo" data-nav="Planos e modelo" data-label="Modelo de negócio">
+  <div class="container">
+    <div class="sec-h">
+      <h2>Três planos para vendedores, três fontes de receita</h2>
+      <p class="lead">A comissão paga o essencial de cada venda, a subscrição cobre os custos fixos e o AdSense é um extra. As três fontes reforçam-se.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <span class="pn">Plano Gratuito</span>
+        <div class="pp">0 € <small>por mês</small></div>
+        <p class="muted">Acesso total à plataforma e proteção anticópia padrão, só com a comissão por venda.</p>
+        <ul><li>Comissão de 9% + 0,25 € por venda</li><li>Receita encriptada, marca de água e print screen bloqueado</li><li>Print &amp; Track, Anti-Foto e IA anti-plágio</li></ul>
+      </div>
+      <div class="plan">
+        <span class="pn">Plano Médio</span>
+        <div class="pp">2,99 € <small>por mês</small></div>
+        <p class="muted">Ou 29,99 € por ano. Destaque standard no catálogo e publicações nas redes sociais.</p>
+        <ul><li>Tudo do plano gratuito</li><li>Destaque standard no catálogo</li><li>Publicações nas redes sociais da AmiTrust</li></ul>
+      </div>
+      <div class="plan feat-plan">
+        <span class="pn">Plano Premium</span>
+        <div class="pp">5,99 € <small>por mês</small></div>
+        <p class="muted">Ou 59,99 € por ano. Visibilidade máxima e vantagens para quem cria.</p>
+        <ul><li>Tudo do plano Médio</li><li>“Destaque dos Destaques” no topo da plataforma</li><li>Apoio personalizado</li><li>Descontos exclusivos em lojas parceiras de materiais</li></ul>
+      </div>
+    </div>
+    </div>
+
+    <div class="panel" style="margin-top:2.4rem">
+      <span class="stepno">1 · Quanto custa começar</span>
+      <h3>Investimento inicial: cerca de 845 €</h3>
+      <div class="inv" role="img" aria-label="Investimento: contabilidade 300, marketing 200, INPI 165, plugins 100, alojamento 50, jurídico 30">
+        <span style="width:35.5%;background:#173235">300</span><span style="width:23.7%;background:#2C4A4D">200</span><span style="width:19.5%;background:#B82E49">165</span><span style="width:11.8%;background:#D4405D">100</span><span style="width:5.9%;background:#6F8486">50</span><span style="width:3.6%;background:#F2A0B0;color:#173235">30</span>
+      </div>
+      <div class="invleg"><span><i style="background:#173235"></i>Contabilidade (estimativa) 300 €</span><span><i style="background:#2C4A4D"></i>Marketing 200 €</span><span><i style="background:#B82E49"></i>INPI 165 €</span><span><i style="background:#D4405D"></i>Plugins 100 €</span><span><i style="background:#6F8486"></i>Alojamento 50 €</span><span><i style="background:#F2A0B0"></i>Jurídico 30 €</span></div>
+      <p class="small muted">Baixo porque a plataforma é No-Code, feita pela fundadora, que não será remunerada no início por esse trabalho.</p>
+    </div>
+
+    <div class="panel" style="margin-top:1.1rem">
+      <span class="stepno">2 · O que a plataforma custa por mês</span>
+      <h3>Quando cobre os custos fixos (~30 €/mês)</h3>
+      <p><b>As subscrições cobrem a maior parte dos custos:</b> cerca de 12 do Plano Médio (ou 6 do Premium) chegam. Cada Plano Médio deixa cerca de 2,70 € e cada Premium cerca de 5,65 €, depois da Stripe.</p>
+      <div class="pair2">
+        <div style="display:grid;gap:.8rem">
+          <label class="slider" for="subs"><span>Plano Médio</span><input id="subs" type="range" min="0" max="40" step="1" value="12"><output id="subsOut" for="subs">12</output></label>
+          <label class="slider" for="prem"><span>Plano Premium</span><input id="prem" type="range" min="0" max="20" step="1" value="0"><output id="premOut" for="prem">0</output></label>
+          <label class="slider" for="sales"><span>Vendas/mês (de 5 €)</span><input id="sales" type="range" min="0" max="300" step="5" value="0"><output id="salesOut" for="sales">0</output></label>
+        </div>
+        <div style="display:grid;gap:.8rem">
+          <div class="bar"><span>Receita líquida</span><span class="track"><span class="fill f-a" id="fN"></span></span><span class="val" id="vN"></span></div>
+          <p class="verdict" id="verdict" aria-live="polite"></p>
+        </div>
+      </div>
+      <p class="small muted">Cada venda é 9% + 0,25 € (7,5% do preço fica para a AmiTrust, depois da Stripe). O AdSense não está contado.</p>
+    </div>
+
+    <div class="panel" style="margin-top:1.1rem">
+      <span class="stepno">3 · O que paga o vendedor por venda</span>
+      <h3>Paga menos do que na concorrência, e a AmiTrust fica com margem positiva</h3>
+      <label class="slider" for="price"><span>Preço da receita</span><input id="price" type="range" min="5" max="20" step="0.5" value="5"><output id="priceOut" for="price">5,00 €</output></label>
+      <div class="bar"><span>Etsy (~15%, ilustrativo)</span><span class="track"><span class="fill f-e" id="fE"></span></span><span class="val" id="vE"></span></div>
+      <div class="bar"><span>Ravelry</span><span class="track"><span class="fill f-r" id="fR"></span></span><span class="val" id="vR"></span></div>
+      <div class="bar"><span><b>AmiTrust</b></span><span class="track two"><span class="fill f-s" id="fS"></span><span class="fill f-a" id="fA"></span></span><span class="val" id="vA"></span></div>
+      <div class="legend2"><span><i style="background:repeating-linear-gradient(45deg,#8AA0A2 0 3px,#B9C7C8 3px 6px)"></i>Parte da Stripe (processamento do pagamento)</span><span><i style="background:#D4405D"></i>O que fica para a AmiTrust</span></div>
+      <div class="kpis">
+        <div class="kpi"><b id="k1"></b><span>poupa o vendedor por venda face ao Etsy</span></div>
+        <div class="kpi"><b id="k2"></b><span>poupa o vendedor por venda face ao Ravelry</span></div>
+        <div class="kpi"><b id="k3"></b><span>fica para a AmiTrust por venda, depois da Stripe</span></div>
+      </div>
+      <p class="small" id="feeNote"></p>
+      <p class="small muted">AmiTrust: 9% + 0,25 € (Stripe: 1,5% + 0,25 €; 7,5% fica para a AmiTrust). Ravelry: 5% + PayPal (3,4% + 0,40 €). Etsy: ~15%, valor ilustrativo. Valores aproximados, usados como exemplo.</p>
+    </div>
+
+
+    <p class="callout" style="margin-top:2.4rem"><b>Como a receita evolui.</b> No arranque, a maior fatia vem das subscrições dos autores, uma fonte previsível que cobre os custos fixos. Com a expansão, a proporção inverte-se e a venda de receitas passa a ser a principal fonte de lucro: um autor pode ter 10 receitas vendidas milhares de vezes, mas só uma subscrição ativa. O aumento de tráfego ativa ainda o AdSense.</p>
+
+    <details class="d" open style="margin-top:1.6rem">
+      <summary>O Business Model Canvas, bloco a bloco</summary>
+      <div class="in">
+        <div class="bmc">
+          <div class="bc c-parc"><h4>Parcerias-Chave</h4>Stripe (pagamentos), AWS (servidores), Google AdSense (anúncios), Wonder.Legal e assessoria jurídica, contabilidade em outsourcing, INPI (registo da marca), Llama e APIs de visão computacional (IA), lojas e armarinhos parceiros (descontos em materiais).</div>
+          <div class="bc c-ativ"><h4>Atividades-Chave</h4>Converter e encriptar receitas em páginas web protegidas, manter as camadas anticópia (Moiré e QR Code), monitorizar a web com IA, gerir o marketplace e as campanhas de destaque nas redes sociais.</div>
+          <div class="bc em c-rec"><h4>Recursos-Chave*</h4>Plataforma WooCommerce encriptada, marca AmiTrust registada no INPI, algoritmos de IA anticópia, fundadora (setor e programação No-Code) e infraestrutura AWS.</div>
+          <div class="bc c-prop"><h4>Proposta Valor</h4>Proteção ativa contra plágio e partilha ilegal, com impressão rastreável à escolha do autor; comissões transparentes e mais baixas do que as da concorrência; planos de subscrição com visibilidade e descontos em fornecedores.</div>
+          <div class="bc c-rel"><h4>Relação Clientes</h4>Autoatendimento seguro no portal do utilizador; apoio personalizado aos subscritores Premium; notificações extrajudiciais automáticas em caso de infração detetada.</div>
+          <div class="bc em c-can"><h4>Canais*</h4>Marketplace AmiTrust, redes sociais oficiais (Reddit, Instagram, Facebook, Threads), email marketing e blog temático de artes manuais.</div>
+          <div class="bc em c-seg"><h4>Segm. Clientes*</h4>Autores e artesãos criadores de receitas originais de artes manuais (croché, amigurumi, tricô, costura, impressão 3D…) e compradores e praticantes de artesanato.</div>
+          <div class="bc c-cus"><h4>Estrutura de Custos</h4>Fixos de ~845 € no 1.º ano (alojamento 50, plugins 100, INPI 165, jurídico 30, marketing 200, contabilidade 300), cerca de 30 €/mês. Variáveis: Stripe (1,5% + 0,25 €) e processamento e APIs de IA.</div>
+          <div class="bc em c-fon"><h4>Fontes de Receita*</h4>Comissão de 9% + 0,25 € por venda (1,5% + 0,25 € para a Stripe, 7,5% líquidos para a AmiTrust); subscrições Médio (2,99 €/mês ou 29,99 €/ano) e Premium (5,99 €/mês ou 59,99 €/ano); anúncios do Google AdSense.</div>
+        </div>
+        <p class="small muted" style="margin-top:.8rem">* Áreas de ênfase.</p>
+      </div>
+    </details>
+  </div>
+  </section>
+
+<!-- 7 COMO FUNCIONA -->
+<section class="sec alt gut" id="anexos" data-nav="Como funciona" data-label="Anexos: como funciona">
+  <div class="container">
+    <div class="sec-h">
+      <h2>Como a AmiTrust vai funcionar, passo a passo</h2>
+      <p class="lead">Descrição do protótipo, do lado do vendedor e do lado do comprador.</p>
+    </div>
+    <div class="stepgroup" style="margin-top:0"><h3>Do lado do vendedor</h3>
+      <div class="steps">
+        <div class="step"><span class="no">1</span><div><h4>Registo do vendedor</h4><p>O autor cria uma conta e escolhe o plano: Gratuito (0 €), Médio (2,99 €/mês) ou Premium (5,99 €/mês, com “Destaque dos Destaques” e descontos em lojas parceiras de materiais).</p></div></div>
+        <div class="step"><span class="no">2</span><div><h4>Carregar a receita e opção de impressão</h4><p>O autor carrega a receita original e define o preço. Escolhe se autoriza a impressão: se a desativar, a proteção é 100% digital; se a ativar, entra o rastreamento Print &amp; Track.</p></div></div>
+        <div class="step"><span class="no">3</span><div><h4>Conversão e encriptação</h4><p>A plataforma converte o PDF em páginas web encriptadas. A receita deixa de existir como ficheiro para descarregar e fica guardada na plataforma, protegida.</p></div></div>
+        <div class="step"><span class="no">4</span><div><h4>Publicação</h4><p>A receita entra no catálogo. Os subscritores recebem destaques automáticos na plataforma e nas redes sociais oficiais (Reddit, Instagram, Facebook e Threads).</p></div></div>
+      </div>
+    </div>
+    <div class="stepgroup"><h3>Do lado do comprador</h3>
+      <div class="steps">
+        <div class="step"><span class="no">5</span><div><h4>Escolha e compra</h4><p>O comprador navega pelo catálogo, escolhe uma receita e finaliza a compra, indicando o email e o NIF (com validação fiscal internacional para compradores estrangeiros). O pagamento é feito pela Stripe. A AmiTrust cobra 9% + 0,25 € por transação, e o resto vai para o vendedor.</p></div></div>
+        <div class="step"><span class="no">6</span><div><h4>Leitura rastreável</h4><p>Depois da compra, o comprador lê a receita na página web protegida, com uma marca de água com o seu email e NIF. As capturas de ecrã saem pretas, e não há PDF para descarregar.</p></div></div>
+        <div class="step"><span class="no">7</span><div><h4>Impressão controlada (Print &amp; Track)</h4><p>Se o autor autorizou a impressão, o comprador imprime pelo botão oficial. A página impressa leva uma camada Anti-Foto (Grade Moiré), um padrão micro-pontilhado quase invisível que estraga qualquer fotografia tirada com o telemóvel, e um QR Code único e encriptado com o ID da compra, o email e o NIF. O comprador é avisado de que o documento é de uso estritamente pessoal e rastreável.</p></div></div>
+      </div>
+    </div>
+    <div class="demo-wrap">
+      <h3>Experimenta os passos 6 e 7</h3>
+      <div class="win">
+        <div class="win-bar"><i></i><i></i><i></i><span>amitrust.pt/leitura · receita protegida</span></div>
+        <div class="paper" id="paper">
+          <div class="wmlayer" id="wmlayer" aria-hidden="true"></div>
+          <h4>Coelhinho de lã (receita de exemplo)</h4>
+          <ol><li>R1: 6 pb em anel mágico (6)</li><li>R2: aumentar em cada ponto (12)</li><li>R3: *1 pb, 1 aum* ×6 (18)</li><li>R4 a R6: 18 pb (18)</li><li>R7: *1 pb, 1 dim* ×6 (12)</li></ol>
+          <div class="black" id="black" hidden>Captura de ecrã bloqueada: a imagem sai preta</div>
+        </div>
+        <div class="win-ctl">
+          <label for="dEmail">Email do comprador (exemplo)<input id="dEmail" type="text" value="comprador@exemplo.pt" autocomplete="off"></label>
+          <label for="dNif">NIF (exemplo)<input id="dNif" type="text" inputmode="numeric" value="123456789" autocomplete="off"></label>
+          <button class="btn ghost sm" id="dShot" type="button">Capturar ecrã</button>
+          <button class="btn sm" id="dPrint" type="button">Imprimir (Print &amp; Track)</button>
+        </div>
+        <p class="win-msg" id="dMsg" aria-live="polite">Simulação ilustrativa da leitura rastreável: a marca de água usa o email e o NIF de quem comprou. Escreve outros dados e vê o que muda.</p>
+      </div>
+    </div>
+    <div class="stepgroup"><h3>Depois da compra</h3>
+      <div class="steps">
+        <div class="step"><span class="no">8</span><div><h4>Vigilância e ação anti-plágio</h4><p>Uma API vigia a web e as redes sociais. Quando deteta uma imagem semelhante a uma receita da AmiTrust, a IA isola o ficheiro e lê o QR Code, mesmo em fotos de baixa qualidade. Identificada a compra, o sistema age sozinho: bloqueia a conta do comprador infrator, envia uma notificação extrajudicial por email e avisa o vendedor.</p></div></div>
+        <div class="step"><span class="no">9</span><div><h4>Acompanhamento do vendedor</h4><p>O vendedor acompanha as vendas, o valor que recebe depois das taxas e as suspeitas de cópia detetadas, na sua área pessoal.</p></div></div>
+        <div class="step"><span class="no">10</span><div><h4>Crescimento</h4><p>À medida que a plataforma ganha tração, os vendedores subscritos ganham mais visibilidade e entram novas receitas. A comissão, as subscrições e os anúncios discretos do Google AdSense sustentam a operação.</p></div></div>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+<!-- 6 REFLEXÃO -->
+<section class="sec gut" id="reflexao" data-nav="Reflexão" data-label="Reflexão crítica">
+  <div class="container">
+    <div class="sec-h">
+      <h2>Reflexão crítica e próximos passos</h2>
+    </div>
+    <div class="tabs" role="tablist" data-tabs="refl">
+      <button class="tab" role="tab" aria-selected="true" data-tab="lim" type="button">O que pode melhorar</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="ris" type="button">Riscos e Mitigação</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="ass" type="button">Assassinos de Criatividade</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="apr" type="button">O que aprendi</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="fal" type="button">O que foi feito e o que falta fazer</button>
+    </div>
+    <div data-panels="refl">
+      <div class="panelx" data-panel="lim">
+        <ul class="list" style="max-width:50rem">
+          <li><b>Dados.</b> Teste informal; números de mercado de terceiros e não específicos de Portugal; sem dados fiáveis sobre a dimensão da pirataria.</li>
+          <li><b>Investimento inicial baixo (~845 €):</b> a plataforma No-Code é feita pela fundadora, sem remuneração no início por esse tempo de desenvolvimento.</li>
+          <li><b>Nenhum sistema de proteção é infalível:</b> a eficácia do sistema anticópia exige atualizações técnicas constantes contra novos métodos de captura, como uma foto ao ecrã com o telemóvel.</li>
+          <li><b>Compradores estrangeiros sem NIF:</b> validação fiscal no checkout, adaptada ao país de origem, em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD).</li>
+          <li><b>Viabilidade técnica</b> do bloqueio de capturas de ecrã, do efeito Anti-Foto (Moiré) e da deteção de cópias pela IA só será confirmada com o MVP.</li>
+        </ul>
+      </div>
+      <div class="panelx" data-panel="ris" hidden>
+        <div class="pairs">
+          <div class="pair"><span><b>Risco:</b> arranque de um marketplace de dois lados</span><span><b>Resposta:</b> começar pelos autores, nas comunidades onde a dor foi validada, com o 1.º mês grátis do Plano Médio para quem publicar mais de 5 receitas originais</span></div>
+          <div class="pair"><span><b>Risco:</b> partilha da impressão em papel e pirataria que não desaparece por completo</span><span><b>Resposta:</b> efeito Anti-Foto (Moiré), QR Code único com dados fiscais, marca de água e IA que deteta cópias; o comprador é avisado de que é para uso pessoal e de que as fugas têm consequências legais</span></div>
+          <div class="pair"><span><b>Risco:</b> compradores internacionais sem NIF português</span><span><b>Resposta:</b> API de validação fiscal internacional no checkout (VIES ou Tax ID do país), em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD)</span></div>
+          <div class="pair"><span><b>Risco:</b> margem curta por venda (7,5% do preço)</span><span><b>Resposta:</b> subscrições e AdSense; possível incentivo a receitas de preço mais alto</span></div>
+          <div class="pair"><span><b>Risco:</b> proteção de dados (email e NIF na marca de água)</span><span><b>Resposta:</b> recolher só o necessário, com consentimento e finalidade clara, e assessoria jurídica</span></div>
+          <div class="pair"><span><b>Risco:</b> custo da IA a crescer com o número de receitas</span><span><b>Resposta:</b> pagar por consumo e acompanhar o custo desde o início</span></div>
+          <div class="pair"><span><b>Risco:</b> depender de uma única pessoa</span><span><b>Resposta:</b> prever um programador na fase de expansão</span></div>
+        </div>
+      </div>
+      <div class="panelx" data-panel="ass" hidden>
+        <div class="grid g3">
+          <div class="card"><h3>“O Etsy e o Ravelry já dominam o mercado”</h3><p class="muted" style="margin-top:.4rem">Este pensamento pode levar a desistir antes de testar. Superei-o ao focar-me no nicho da proteção contra o plágio, que essas plataformas ignoram.</p></div>
+          <div class="card"><h3>Medo de falhar e perfeccionismo</h3><p class="muted" style="margin-top:.4rem">Levar-me-iam a querer construir tudo antes de validar, quando o caminho é um MVP pequeno e feedback cedo.</p></div>
+          <div class="card"><h3>Resistência à mudança</h3><p class="muted" style="margin-top:.4rem">Os artesãos estão habituados às plataformas tradicionais. A proposta tem de mostrar benefício imediato (proteção, taxas menores e visibilidade) com o menor esforço possível.</p></div>
+        </div>
+      </div>
+      <div class="panelx" data-panel="apr" hidden>
+        <div class="grid g2">
+          <div class="card"><h3>Uma boa ideia precisa de números</h3><p class="muted" style="margin-top:.4rem">Perceber que faltavam dados sobre o tamanho do mercado e que o custo parecia demasiado baixo obrigou-me a procurar fontes, a distinguir factos de estimativas e a admitir o que ainda não sei.</p></div>
+          <div class="card"><h3>Os detalhes do modelo mudam tudo</h3><p class="muted" style="margin-top:.4rem">Uma taxa aparentemente simples pode ser absorvida pelo gateway de pagamento. Por isso estruturei a comissão de forma transparente, 9% + 0,25 € com a Stripe (7,5% para a AmiTrust), e criei o ecossistema de subscrições.</p></div>
+          <div class="card"><h3>Uma plataforma para todas as artes manuais</h3><p class="muted" style="margin-top:.4rem">Percebi que a plataforma serve todo o tipo de artes manuais de autoria original, do croché e amigurumi aos tutoriais de impressão 3D.</p></div>
+          <div class="card"><h3>Se repetisse o processo</h3><p class="muted" style="margin-top:.4rem">Testaria a ideia com entrevistas estruturadas antes de fechar o modelo de negócio, para ter evidência mais forte e acertar a comissão mais cedo.</p></div>
+        </div>
+        <p class="quote"><span>Aprendi a comunicar a ideia em níveis diferentes</span> e que um projeto convence mais quando assume as suas limitações.</p>
+      </div>
+      <div class="panelx" data-panel="fal" hidden>
+        <div class="grid g2">
+          <div class="card"><h3>O que foi feito</h3><p class="muted" style="margin-top:.4rem">A ideia foi validada através de um teste direcionado, conduzido entre os dias 2 e 9 de outubro de 2026, em comunidades ativas de autores e artesãos (Reddit, Instagram, Facebook e Threads), complementado pela minha experiência própria como artesã e criadora. Não é um inquérito estatístico formal, mas a recetividade confirma que a pirataria em PDF e as taxas elevadas são dores reais e urgentes.</p></div>
+          <div class="card"><h3>O que falta fazer</h3><p class="muted" style="margin-top:.4rem">Apresentar o protótipo funcional a um grupo restrito de autores e artesãos e recolher feedback estruturado. Melhorias a avaliar no terreno:</p>
+            <ul class="list" style="margin-top:.8rem"><li><b>Dados fiscais:</b> a disponibilidade dos compradores para dar o email e o NIF no checkout, em troca da impressão rastreável.</li><li><b>Impressão:</b> a percentagem de autores que a permitem, face aos que preferem a leitura 100% digital.</li><li><b>Leitor web:</b> a usabilidade de seguir a receita no ecrã, sem PDF para descarregar.</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+<!-- FAQ -->
+<section class="sec alt gut" id="faq" data-nav="Perguntas" data-label="Perguntas frequentes">
+  <div class="container">
+    <div class="sec-h">
+      <h2>Perguntas frequentes</h2>
+    </div>
+    <div class="faq">
+      <details><summary>Porque é que o custo inicial é tão baixo?</summary><p>O investimento de cerca de 845 € é baixo porque a plataforma No-Code é feita pela fundadora, que não será remunerada no início por esse tempo de desenvolvimento e trabalho. Um site feito à medida por uma agência custaria muito mais, e esse investimento só entra depois da fase de tração, com a entrada de um programador.</p></details>
+      <details><summary>Quanto ganha a AmiTrust por venda?</summary><p>Cerca de 7,5% do preço, depois da Stripe: a comissão é de 9% + 0,25 € e a Stripe fica com 1,5% + 0,25 €. Numa receita de 5 €, são cerca de 0,38 €. A isto somam-se as subscrições: cada Plano Médio deixa cerca de 2,70 €, e com cerca de 12 cobrem-se os custos fixos mensais.</p></details>
+      <details><summary>A pirataria acaba?</summary><p>Não por completo, porque nenhum sistema é infalível. Mas o efeito Anti-Foto (Moiré) estraga as fotografias à folha impressa, o QR Code único identifica a compra e a marca de água identifica quem partilha. A aposta é na dissuasão e na rastreabilidade, com a IA a detetar cópias.</p></details>
+      <details><summary>O que acontece a quem partilha uma receita?</summary><p>A IA lê o QR Code e identifica a compra. Depois, o sistema bloqueia a conta do comprador infrator, envia-lhe uma notificação extrajudicial por email e avisa o vendedor de que o plágio foi neutralizado.</p></details>
+      <details><summary>E os compradores sem NIF português?</summary><p>A validação fiscal é feita por uma API no checkout, que adapta o campo ao país de origem (NIF, IVA ou equivalente) e valida o número em tempo real, em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD).</p></details>
+      <details><summary>Que dados pessoais são recolhidos?</summary><p>O email e o NIF do comprador, para a marca de água. Recolhe-se só o necessário, com consentimento e finalidade clara, com apoio de assessoria jurídica em outsourcing.</p></details>
+      <details><summary>Porque mudaria um vendedor do Etsy ou do Ravelry?</summary><p>Pela proteção anticópia, por taxas menores e pelo destaque. A resistência à mudança é real, por isso a proposta tem de mostrar benefício imediato com o menor esforço possível, começando pelos vendedores que já sofrem com a pirataria.</p></details>
+    </div>
+  </div>
+  </section>
+
+</main>
+
+<footer class="foot gut">
+  <div class="container">
+    <div><div class="logo" role="img" aria-label="AmiTrust"></div><p style="margin-top:1rem;max-width:22rem">Cria • Protege • Monetiza.</p></div>
+    <div><h4>Secções</h4><ul><li><a href="#sobre">Sobre</a></li><li><a href="#problema">Problema</a></li><li><a href="#contexto">Contexto</a></li><li><a href="#solucao">Solução</a></li><li><a href="#modelo">Planos e modelo</a></li></ul></div>
+    <div><h4>Projeto</h4><ul><li><a href="#anexos">Como funciona</a></li><li><a href="#reflexao">Reflexão</a></li><li><a href="#faq">Perguntas</a></li></ul></div>
+    <p class="legal">Protótipo académico para o projeto de Criatividade e Inovação · Rafaela Santana de Castro · 12/11/2026. Taxas e valores: aproximados, usados como exemplo. Os emails e NIF da demonstração são fictícios.</p>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var body=document.body;
+  var secs=[].slice.call(document.querySelectorAll('[data-nav]'));
+  var N=secs.length, cur=-1;
+  var menu=$('menu'), links=[].slice.call(menu.querySelectorAll('a'));
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* menu móvel */
+  $('burger').addEventListener('click',function(){var o=menu.classList.toggle('open');this.setAttribute('aria-expanded',String(o))});
+  links.forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open');$('burger').setAttribute('aria-expanded','false')})});
+
+  /* destaque do menu */
+  function update(){
+    var vh=window.innerHeight,y=window.scrollY||window.pageYOffset,line=y+64+vh*0.3,i=0;
+    for(var k=0;k<N;k++){if(secs[k].offsetTop<=line)i=k}
+    if(y+vh>=document.documentElement.scrollHeight-4)i=N-1;
+    if(i!==cur){cur=i;var cs=secs[i].id;links.forEach(function(a){a.setAttribute('aria-current',String(a.getAttribute('href')==='#'+cs))})}
+  }
+  var tick=false;
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(function(){tick=false;update()})}},{passive:true});
+  window.addEventListener('resize',update);window.addEventListener('load',update);update();
+
+  /* separadores */
+  [].slice.call(document.querySelectorAll('[data-tabs]')).forEach(function(bar){
+    var panels=document.querySelector('[data-panels="'+bar.getAttribute('data-tabs')+'"]');
+    var tabs=[].slice.call(bar.querySelectorAll('.tab'));
+    tabs.forEach(function(tb){tb.addEventListener('click',function(){
+      tabs.forEach(function(o){o.setAttribute('aria-selected',String(o===tb))});
+      [].slice.call(panels.children).forEach(function(p){p.hidden=p.getAttribute('data-panel')!==tb.getAttribute('data-tab')});
+    })});
+  });
+
+  /* partilha do PDF */
+  var copies=$('copies'),cN=0;
+  $('btnShare').addEventListener('click',function(){for(var k=0;k<4&&cN<48;k++){cN++;var s=document.createElement('span');s.textContent='PDF';copies.appendChild(s)}$('cN').textContent=cN});
+  $('btnReset').addEventListener('click',function(){cN=0;copies.innerHTML='';$('cN').textContent='0'});
+
+  /* números */
+  var eur=function(v){v=v+1e-9;return v.toLocaleString('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'};
+  var pc=function(v){return v.toFixed(1).replace('.',',')+'%'};
+  var pr=$('price'),su=$('subs'),sa=$('sales'),pm=$('prem');
+  function calc(){
+    var p=parseFloat(pr.value),s=parseInt(su.value,10),n=parseInt(sa.value,10),q=parseInt(pm.value,10);
+    $('priceOut').textContent=eur(p);$('subsOut').textContent=s;$('salesOut').textContent=n;$('premOut').textContent=q;
+    var a=0.09*p+0.25,st=0.015*p+0.25,am=a-st,r=0.084*p+0.40,e=0.15*p,mx=Math.max(a,r,e);
+    $('fE').style.width=(e/mx*100)+'%';$('fR').style.width=(r/mx*100)+'%';
+    $('fS').style.width=(st/mx*100)+'%';$('fA').style.width=(am/mx*100)+'%';
+    $('vE').textContent=eur(e)+' ('+pc(15)+')';
+    $('vR').textContent=eur(r)+' ('+pc(r/p*100)+')';
+    $('vA').textContent=eur(a)+' ('+pc(a/p*100)+')';
+    $('k1').textContent=eur(e-a);$('k2').textContent=eur(r-a);$('k3').textContent=eur(am);
+    $('feeNote').textContent='Numa venda de '+eur(p)+', o vendedor fica com '+eur(p-a)+'. Com 100 vendas por mês a este preço, poupa '+eur(100*(r-a))+' face ao Ravelry e a AmiTrust fica com '+eur(100*am)+' depois da Stripe.';
+    var net=s*2.695+q*5.65+n*0.375,fixed=30;
+    $('fN').style.width=Math.min(100,net/fixed*100)+'%';
+    $('vN').textContent=eur(net)+' / '+eur(fixed);
+    var v=$('verdict');
+    if(net>=fixed){v.className='verdict ok';v.textContent='Cobre os custos fixos mensais, com uma folga de '+eur(net-fixed)+'.'}
+    else{v.className='verdict';v.textContent='Faltam '+eur(fixed-net)+' por mês para cobrir os custos fixos.'}
+  }
+  [pr,su,sa,pm].forEach(function(el){el.addEventListener('input',calc)});calc();
+
+  /* demonstração da marca de água */
+  var layer=$('wmlayer'),em=$('dEmail'),nf=$('dNif'),printed=0,msg=$('dMsg'),paper=$('paper'),t1=null;
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function wm(){var t=esc((em.value||'email')+' · NIF '+(nf.value||'000000000')),h='';for(var k=0;k<90;k++)h+='<span>'+t+'</span>';layer.innerHTML=h}
+  em.addEventListener('input',wm);nf.addEventListener('input',wm);wm();
+  $('dShot').addEventListener('click',function(){
+    $('black').hidden=false;msg.textContent='Captura de ecrã bloqueada: a imagem sai preta, não há nada para copiar.';
+    clearTimeout(t1);t1=setTimeout(function(){$('black').hidden=true},1800);
+  });
+  $('dPrint').addEventListener('click',function(){
+    printed++;paper.classList.add('printed');
+    msg.textContent='Impressão n.º '+printed+': a página sai com uma marca de água dinâmica com os dados de quem comprou ('+(em.value||'email')+'). Se a cópia circular, sabe-se de que compra veio.';
+    clearTimeout(t1);t1=setTimeout(function(){paper.classList.remove('printed')},3500);
+  });
+
+  update();
+})();
+</script>
+
+</body></html>
